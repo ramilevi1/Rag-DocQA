@@ -30,11 +30,28 @@ A simple, local, fully open-source pipeline to ask questions about your PDFs / W
    - Generate with `google/flan-t5-base`  
    - Return answer + cited chunks
 
-## Endpoints
-- `GET /` : UI
-- `POST /upload` : multipart form (files)
-- `POST /ask` : `{ question, system_prompt?, top_k? }`
-- `GET /download/{filename}` : fetch uploaded original
+## Backend
+* **Framework:** [FastAPI](https://fastapi.tiangolo.com/)
+* **Entry point:** `app/main.py`
+  * Runs under Uvicorn:
+    ```bash
+    python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    ```
+  * Defines all API endpoints:
+    * `GET /` → serves the main HTML page
+    * `POST /upload` → handles document ingestion
+    * `POST /ask` → runs the RAG pipeline and returns answers
+    * `POST /session/new` → creates a new isolated session
+    * `POST /session/clear` → clears vectors for a session
+
+* **Supporting backend modules:**
+  * `app/ingest.py` → file parsing, OCR fallback, chunking, calling RAG to embed & upsert
+  * `app/rag.py` → embeddings (`SentenceTransformer`), vector database (Chroma), similarity search, re-ranking, answer generation
+  * `app/types.py` → request/response models for API endpoints
+
+## Frontend
+* **Files:** `frontend/index.html`, `frontend/app.js`, `frontend/styles.css`
+* This is just a static UI that runs in the browser and calls the backend APIs (`/upload`, `/ask`, etc.).
 
 ## Run
 ```bash
