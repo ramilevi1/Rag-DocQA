@@ -45,7 +45,7 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 # open http://localhost:8000
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-End-to-end user flow for **Rag-DocQA project** ).
+## End-to-end user flow for **Rag-DocQA project** ).
 # 1) Page render (browser → server)
 
    1. **User opens the site**
