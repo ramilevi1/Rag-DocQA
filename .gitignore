@@ -1,0 +1,29 @@
+# Python & venv
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Local data & vector store
+data/uploads/
+storage/chroma/
+*.sqlite
+*.db
+
+# Caches
+.cache/
+.huggingface/
+transformers_cache/
+torch_cache/
+**/cache/
+**/.cache/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

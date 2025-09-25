@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>AI Doc Q&A</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>AI Doc Q&A</h1>
+
+    <section class="panel">
+      <h2>Session</h2>
+      <div class="row">
+        <input id="sessionId" type="text" readonly />
+        <button id="newSessionBtn">New Session</button>
+        <button id="resetSessionBtn" title="Delete vectors for current session only">Reset Session</button>
+      </div>
+      <div class="small">Each session isolates uploads and queries. Use <em>New Session</em> to start with a fresh set of documents.</div>
+    </section>
+
+    <section class="panel">
+      <h2>1) Upload documents</h2>
+      <form id="uploadForm">
+        <input type="file" id="files" name="files" multiple accept=".pdf,.docx,.txt,.md"/>
+        <button type="submit">Upload</button>
+      </form>
+      <div id="uploadResult" class="mono"></div>
+    </section>
+
+    <section class="panel">
+      <h2>2) System Prompt (optional)</h2>
+      <textarea id="systemPrompt" rows="4" placeholder="e.g., Answer concisely; use only context; if unknown, say 'I don't know'."></textarea>
+    </section>
+
+    <section class="panel">
+      <h2>3) Ask a question</h2>
+      <div class="row">
+        <input id="question" type="text" placeholder="Type your question about the uploaded docs"/>
+        <button id="askBtn">Ask</button>
+      </div>
+      <div id="answer" class="answer"></div>
+      <div id="sources" class="sources"></div>
+    </section>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
